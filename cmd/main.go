@@ -11,5 +11,13 @@ func main() {
 		Name: "Анатолий",
 		Age:  30,
 	}
+
+	user2 := models.User{
+		ID:   2,
+		Name: "Сергей",
+		Age:  33,
+	}
+
 	fmt.Println(user)
+	fmt.Println(user2)
 }
