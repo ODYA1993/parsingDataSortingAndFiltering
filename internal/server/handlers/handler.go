@@ -1,40 +1,32 @@
-package handler
+package handlers
 
 import (
 	"encoding/json"
-	"github.com/DmitryOdintsov/workingWithGit/internal/models"
+	"github.com/DmitryOdintsov/workingWithGit/internal/service"
 	"github.com/DmitryOdintsov/workingWithGit/internal/store"
 	"log"
 	"net/http"
 )
 
-type Handlers struct{}
+type Handler struct{}
 
-func NewHandlers() *Handlers {
-	return &Handlers{}
+func NewHandlers() *Handler {
+	return &Handler{}
 }
 
-func (h *Handlers) GetMMS(w http.ResponseWriter, r *http.Request) {
+func (h *Handler) HandleConnection(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	urlPath := "http://127.0.0.1:8383/mms"
-	req, err := http.Get(urlPath)
+	resultT := service.NewResultT(false)
+	resultSet := service.NewResultSetT()
+	_, err := store.GetResultData(resultSet)
 	if err != nil {
 		log.Println(err)
+		resultT.Error = err.Error()
+	} else {
+		resultT.Status = true
+		resultT.Data = *resultSet
 	}
-	datSet := store.NewDataset()
-	if req.StatusCode != http.StatusOK {
-		json.NewEncoder(w).Encode(datSet)
-	}
-	var data []*models.Data
-	err = json.NewDecoder(req.Body).Decode(&data)
-	if err != nil {
-		log.Println(err)
-		json.NewEncoder(w).Encode(datSet)
-	}
-
-	datSet.Data = append(datSet.Data, data...)
-	datSet.Validate()
+	byteResult, err := json.Marshal(resultT)
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(datSet)
-	return
+	w.Write(byteResult)
 }

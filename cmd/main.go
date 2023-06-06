@@ -1,23 +1,22 @@
 package main
 
 import (
-	"fmt"
-	"github.com/DmitryOdintsov/workingWithGit/internal/models"
+	"github.com/DmitryOdintsov/workingWithGit/internal/server"
+	"github.com/DmitryOdintsov/workingWithGit/internal/server/handlers"
+	"github.com/DmitryOdintsov/workingWithGit/internal/service"
+	"github.com/DmitryOdintsov/workingWithGit/internal/store"
+)
+
+var (
+	pathSMS     = "./src/simulator/sms.data"
+	pathVoice   = "./src/simulator/voice.data"
+	pathEmail   = "./src/simulator/email.data"
+	pathBilling = "./src/simulator/billing.data"
 )
 
 func main() {
-	user := models.User{
-		ID:   1,
-		Name: "Анатолий",
-		Age:  30,
-	}
-
-	user2 := models.User{
-		ID:   2,
-		Name: "Сергей",
-		Age:  33,
-	}
-
-	fmt.Println(user)
-	fmt.Println(user2)
+	hand := handlers.NewHandlers()
+	resultSet := service.NewResultSetT()
+	store.GetResultData(resultSet)
+	server.Run(hand)
 }
