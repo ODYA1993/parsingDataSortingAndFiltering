@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-var addr = ":8080"
+var addr = ":8282"
 
 type App struct {
 	router chi.Router
@@ -17,7 +17,7 @@ func Run(h *handlers.Handler) {
 	log.Printf("starting server on %s", addr)
 
 	router := chi.NewRouter()
-	router.Get("/", h.HandleConnection)
+	router.Get("/api", h.HandleConnection)
 
 	err := http.ListenAndServe(addr, router)
 	if err != nil {

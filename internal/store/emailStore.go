@@ -9,8 +9,6 @@ import (
 	"sync"
 )
 
-var ()
-
 type DatasetEmail struct {
 	Data []*models.EmailData
 	sync.Mutex

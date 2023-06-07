@@ -78,7 +78,7 @@ func (r *ResultSetT) GetVoice() error {
 	voice := parse.ParsingFile(pathVoice)
 	dataSetVoice.ParseInStruct(voice)
 
-	data := []models.VoiceCall{}
+	var data []models.VoiceCall
 	byteSms, err := json.Marshal(dataSetVoice.Data)
 	if err != nil {
 		log.Println(err)
