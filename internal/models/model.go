@@ -27,14 +27,6 @@ type VoiceCall struct {
 	TTFB                int     `json:"ttfb"`
 	VoicePurity         int     `json:"voice_purity"`
 	MedianOfCallsTime   int     `json:"median_of_calls_time"`
-	//Country               string  `json:"country"`
-	//Load                  int     `json:"load"`
-	//ResponseTime          int     `json:"response_time"`
-	//Provider              string  `json:"provider"`
-	//ConnectionStability   float64 `json:"connection_stability"`
-	//TTFB                  int     `json:"ttfb"`
-	//PurityOfCommunication int     `json:"purity_of_communication"`
-	//MedianCallDuration    int     `json:"median_call_duration"`
 }
 
 type EmailData struct {
