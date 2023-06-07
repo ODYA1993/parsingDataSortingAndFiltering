@@ -24,17 +24,9 @@ func (d *DatasetVoice) ParseInStruct(data [][]string) {
 				case 0:
 					voice.Country = field
 				case 1:
-					fieldInt, err := strconv.Atoi(field)
-					if err != nil {
-						log.Println(err)
-					}
-					voice.Load = fieldInt
+					voice.Bandwidth = field
 				case 2:
-					fieldInt, err := strconv.Atoi(field)
-					if err != nil {
-						log.Println(err)
-					}
-					voice.ResponseTime = fieldInt
+					voice.ResponseTime = field
 				case 3:
 					voice.Provider = field
 				case 4:
@@ -54,13 +46,13 @@ func (d *DatasetVoice) ParseInStruct(data [][]string) {
 					if err != nil {
 						log.Println(err)
 					}
-					voice.PurityOfCommunication = fieldInt
+					voice.VoicePurity = fieldInt
 				case 7:
 					fieldInt, err := strconv.Atoi(field)
 					if err != nil {
 						log.Println(err)
 					}
-					voice.MedianCallDuration = fieldInt
+					voice.MedianOfCallsTime = fieldInt
 				}
 			}
 			if ok := voice.ValidateVoice(); ok {

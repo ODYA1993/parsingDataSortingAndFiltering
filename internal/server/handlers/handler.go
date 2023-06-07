@@ -16,15 +16,18 @@ func NewHandlers() *Handler {
 
 func (h *Handler) HandleConnection(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
 	resultT := service.NewResultT(false)
-	resultSet := service.NewResultSetT()
-	_, err := store.GetResultData(resultSet)
+	resultSetT := service.NewResultSetT()
+	_, err := store.GetResultData(resultSetT)
 	if err != nil {
 		log.Println(err)
 		resultT.Error = err.Error()
 	} else {
 		resultT.Status = true
-		resultT.Data = *resultSet
+		resultT.Data = *resultSetT
 	}
 	byteResult, err := json.Marshal(resultT)
 	w.WriteHeader(http.StatusOK)

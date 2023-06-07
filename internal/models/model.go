@@ -5,10 +5,10 @@ import (
 )
 
 type SMS struct {
-	Country      string
-	Bandwidth    string
-	ResponseTime string
-	Provider     string
+	Country      string `json:"country"`
+	Bandwidth    string `json:"bandwidth"`
+	ResponseTime string `json:"response_time"`
+	Provider     string `json:"provider"`
 }
 
 type MMS struct {
@@ -19,29 +19,37 @@ type MMS struct {
 }
 
 type VoiceCall struct {
-	Country               string  `json:"country"`
-	Load                  int     `json:"load"`
-	ResponseTime          int     `json:"response_time"`
-	Provider              string  `json:"provider"`
-	ConnectionStability   float64 `json:"connectionStability"`
-	TTFB                  int     `json:"TTFB"`
-	PurityOfCommunication int     `json:"purityOfCommunication"`
-	MedianCallDuration    int     `json:"medianCallDuration"`
+	Country             string  `json:"country"`
+	Bandwidth           string  `json:"bandwidth"`
+	ResponseTime        string  `json:"response_time"`
+	Provider            string  `json:"provider"`
+	ConnectionStability float64 `json:"connection_stability"`
+	TTFB                int     `json:"ttfb"`
+	VoicePurity         int     `json:"voice_purity"`
+	MedianOfCallsTime   int     `json:"median_of_calls_time"`
+	//Country               string  `json:"country"`
+	//Load                  int     `json:"load"`
+	//ResponseTime          int     `json:"response_time"`
+	//Provider              string  `json:"provider"`
+	//ConnectionStability   float64 `json:"connection_stability"`
+	//TTFB                  int     `json:"ttfb"`
+	//PurityOfCommunication int     `json:"purity_of_communication"`
+	//MedianCallDuration    int     `json:"median_call_duration"`
 }
 
 type EmailData struct {
-	Country      string
-	Provider     string
-	DeliveryTime int
+	Country      string `json:"country"`
+	Provider     string `json:"provider"`
+	DeliveryTime int    `json:"delivery_time"`
 }
 
 type BillingData struct {
-	CreateCustomer bool
-	Purchase       bool
-	Payout         bool
-	Recurring      bool
-	FraudControl   bool
-	CheckoutPage   bool
+	CreateCustomer bool `json:"createCustomer"`
+	Purchase       bool `json:"purchase"`
+	Payout         bool `json:"payout"`
+	Recurring      bool `json:"recurring"`
+	FraudControl   bool `json:"fraudControl"`
+	CheckoutPage   bool `json:"checkoutPage"`
 }
 
 type SupportData struct {

@@ -10,10 +10,10 @@ import (
 )
 
 var (
-	pathSMS     = "./src/simulator/sms.data"
-	pathVoice   = "./src/simulator/voice.data"
-	pathEmail   = "./src/simulator/email.data"
-	pathBilling = "./src/simulator/billing.data"
+	pathSMS     = "./simulator/sms.data"
+	pathVoice   = "./simulator/voice.data"
+	pathEmail   = "./simulator/email.data"
+	pathBilling = "./simulator/billing.data"
 )
 
 type ResultT struct {
